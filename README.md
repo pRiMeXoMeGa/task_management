@@ -24,11 +24,11 @@ With User friendly interface and interactive design, this frontend serves as the
 - [ Important ] **Create a database** with name `taskDB`or any name of your choice but then you have to make similar change in .env file.
 - Set Database settings 
 	>**for simplicity use below settings**--
-		>DATABASE_HOSTNAME=localhost 
-		>DATABASE_PORT=5432 
-		>DATABASE_PASSWORD=password123 
-		>DATABASE_NAME=taskDB
-		>DATABASE_USERNAME=postgres
+	>DATABASE_HOSTNAME=localhost 
+	>DATABASE_PORT=5432 
+	>DATABASE_PASSWORD=password123 
+	>DATABASE_NAME=taskDB
+	>DATABASE_USERNAME=postgres
 
 ## Steps to install backend
 
