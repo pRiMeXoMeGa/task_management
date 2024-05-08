@@ -23,7 +23,7 @@ With User friendly interface and interactive design, this frontend serves as the
 	 > Install Postgresql and pgAdmin for easy UI based DB access
 - [ Important ] **Create a database** with name `taskDB`or any name of your choice but then you have to make similar change in .env file.
 - Set Database settings 
-	>**for simplicity use below settings**--
+**for simplicity use below settings**--
 	
 	>DATABASE_HOSTNAME=localhost 
 	
