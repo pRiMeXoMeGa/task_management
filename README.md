@@ -17,13 +17,26 @@ With User friendly interface and interactive design, this frontend serves as the
 8. Users can search from various task. (search functionality).
 
 
+## Database Requirement
+- Application is Developement using PostgreSQL
+- Requirements
+	 > Install Postgresql and pgAdmin for easy UI based DB access
+- [ Important ] **Create a database** with name `taskDB`or any name of your choice but then you have to make similar change in .env file.
+- Set Database settings 
+	>**for simplicity use below settings**--
+		>DATABASE_HOSTNAME=localhost 
+		>DATABASE_PORT=5432 
+		>DATABASE_PASSWORD=password123 
+		>DATABASE_NAME=taskDB
+		>DATABASE_USERNAME=postgres
+
 ## Steps to install backend
 
 -   Step 1: Create .env file and paste below values
 	>DATABASE_HOSTNAME=localhost 
 	>DATABASE_PORT=5432 
 	>DATABASE_PASSWORD=password123 
-	>DATABASE_NAME=fastapi 
+	>DATABASE_NAME=taskDB
 	>DATABASE_USERNAME=postgres
 	>SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7 
 	>ALGORITHM=HS256 
