@@ -1,0 +1,42 @@
+
+!!!!! Preflight error redirect not allowed !!!!!
+
+
+Short answer: Ensure the request URL in your code isn’t missing a trailing slash.
+A missing-trailing-slash problem is the most-common cause of the error cited in the question.
+
+But that’s not the only cause — just the most common. Read on for more details.
+When you see this error, it means your code is triggering your browser to send a CORS preflight OPTIONS request, and the server’s responding with a 3xx redirect. To avoid the error, your request needs to get a 2xx success response instead.
+
+You may be able to adjust your code to avoid triggering browsers to send the OPTIONS request.
+
+As far as what all’s going on in this case, it’s important to know browsers do a CORS preflight if:
+
+the request method is anything other than GET, HEAD, or POST
+you’ve set custom request headers other than Accept, Accept-Language, Content-Language, Content-Type, DPR, Downlink, Save-Data, Viewport-Width, or Width
+the Content-Type request header has a value other than application/x-www-form-urlencoded, multipart/form-data, or text/plain
+If you can’t change your code to avoid need for browsers to do a preflight, another option is:
+
+Check the URL in the Location response header in the response to the OPTIONS request.
+Change your code to make the request to that other URL directly instead.
+The difference between the URLs might be something as simple as a trailing slash in the path — for example, you may need to change the URL in your code to add a trailing slash — e.g., http://localhost/api/auth/login/ (notice the trailing slash) rather than http://localhost/api/auth/login (no trailing slash) — or you might instead need to remove a trailing slash.
+
+You can use the Network pane in browser devtools to examine the response to the OPTIONS request and to find the redirect URL in the value of the Location response header.
+
+However, in some cases, all of the following will be true:
+
+you’re not able to avoid the preflight OPTIONS
+you’re not able to make any adjustments to the request URL
+you’re not able to replace the request URL with a completely different URL
+A common case with those conditions is when you try to work with some 3rd-party endpoint that requires an OAuth or SSO workflow that’s not intended to be used from frontend code.
+
+In such cases — in all cases, actually — what’s essential to realize is that the response to the preflight must come from the same origin to which your frontend code sent the request.
+
+So even if you create a server-side proxy that you control:
+
+If your browser sends a preflight OPTIONS request to your proxy.
+You’ve configured the proxy such that it just redirects the request to a 3rd-party endpoint.
+Thus, your frontend ends up receiving a response directly from that 3rd-party endpoint.
+…then the preflight will fail.
+
+In such a case ultimately your only alternative is: ensure the preflight isn’t just redirected to the 3rd-party endpoint but instead your own server-side (proxy) code receives the response from that endpoint, consumes it, and then sends a response of its own back to your frontend code.

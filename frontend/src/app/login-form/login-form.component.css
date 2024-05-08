@@ -1,0 +1,52 @@
+.form-width{
+  width: 25vw;
+}
+.text-right.forget-pass a{
+    font-size: 12px;
+    color: #5252dc;
+    text-decoration: none;
+}
+.sign-up-text{
+  color: #5252dc;
+}
+.sign-up-text a{
+  color: #4949c0;
+  font-weight: 600;
+  text-decoration: none;
+}
+.login-card{
+  background: #d1effb;  
+  border-radius: 5px;
+  box-shadow: 0px 0px 30px #f7f7f7;
+}
+label{
+  color: rgb(0, 0, 0);
+  font-weight: 100;
+}
+.user-image{
+  height: 100px;
+}
+.login-avatar{
+  text-align: center;
+  margin-top: -50px;
+}
+.login{
+  
+  border: none;
+  border-radius: 6px;
+}
+.btn-color{
+  background-color: #5252dc;
+  border-color: #5252dc;
+  color: #fff;
+}
+.simple-keyboard {
+  max-width: 850px;
+}
+
+
+@media only screen and (max-width: 600px)  {
+  .form-width{
+    width: 65vw;
+  }
+}

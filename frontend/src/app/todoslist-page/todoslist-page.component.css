@@ -1,0 +1,43 @@
+thead{
+    background-color: rgb(248, 248, 248);
+    color: blue;
+}
+a{
+    text-decoration: none;
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
+.yellow{
+    color: rgb(255, 183, 0);
+}
+
+.lightred{
+    font-weight: 600;
+    background-color: rgb(255, 244, 244);
+}
+
+.lightgreen{
+    font-weight: 600;
+    background-color: rgb(244, 255, 244);
+}
+
+.lightyellow{
+    font-weight: 600;
+    background-color: rgb(255, 255, 244);
+}
+
+.filterDropdown{
+    width: 50%;
+    height: 25px;
+}
+
+tr>th, tr>td{
+    text-align: center;
+}

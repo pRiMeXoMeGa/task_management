@@ -1,0 +1,45 @@
+<mat-toolbar color="primary" >
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle();">menu</mat-icon>
+    </button>
+    <h1>
+      {{title}}
+    </h1>
+    <!-- <button class="login-right" mat-icon-button>
+      Login
+       <mat-icon >login</mat-icon>
+    </button> -->
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened mode="side" >  
+    <mat-nav-list *ngIf="getVisible()">
+      <mat-list-item>
+        <mat-icon>face</mat-icon>
+        {{getUserName() | uppercase}}
+      </mat-list-item>
+      <mat-list-item *ngFor="let task of sideNavTaskList">
+        <mat-icon>{{task.icon}}</mat-icon>
+        <a mat-list-item 
+              [routerLink]="[task.url]"
+              id="sentiment{{task.url}}">
+              {{task.category}}
+        </a>
+      </mat-list-item>
+      <mat-list-item >
+        <mat-icon>logout</mat-icon>
+        <a mat-list-item 
+              (click)="logout()">
+              Logout
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="main-div">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,80 @@
+<!-- <div class="row"> -->
+      <div class="card login mt-5 mx-auto form-width">
+        <div class="card-body login-card">
+          <div class="login-avatar">
+            <img src="https://pluspng.com/img-png/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" alt="user" class="user-image">
+          </div>
+          <form [formGroup]="userForm" (ngSubmit)="isLogin? onSubmit(): SignUp()">
+
+            <div *ngIf="!isLogin" class="form-group">
+              <label for="fullname">Full Name</label>
+              <input type="text" formControlName="fullname" class="form-control" 
+                placeholder="Full Name"
+                [ngClass]="{ 'is-invalid': submitted && f['fullname'].errors }" />
+              <div *ngIf="submitted && f['fullname'].errors" class="invalid-feedback">
+                  <div *ngIf="f['fullname'].errors['required']">Full Name is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username">Email</label>
+              <input type="text" formControlName="email" class="form-control" 
+                     placeholder="Email"
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['pattern']">Email must be a valid email address</div>
+                </div>
+            </div>
+          
+            <div class="form-group">
+              <label for="password">Password </label>
+              <input type="password" formControlName="password" class="form-control"
+                     placeholder="Password"
+                     [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+              <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                  <div *ngIf="f['password'].errors['required']">Password is required</div>
+                  <div *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</div>
+                  <!-- <div *ngIf="f['password'].errors['pattern']">
+                    Password must have upper and lower case combination,
+                    should have atleast 1 number, 1 special characters (#,?,!,@,$,%,^,&,*,_).
+                  </div> -->
+              </div>
+            </div>
+
+            <div *ngIf="!isLogin" class="form-group">
+              <label for="cpassword">Confirm Password </label>
+              <input type="password" formControlName="cpassword" class="form-control"
+                     placeholder="Confirm Password" (keyup)="checkPassword()"
+                     [ngClass]="{ 'is-invalid': submitted && f['cpassword'].errors }" />
+              <div *ngIf="submitted && f['cpassword'].errors" class="invalid-feedback">
+                  <div *ngIf="f['cpassword'].errors['required']">Password is required</div>
+                  <div *ngIf="f['cpassword'].errors['minlength']">Password must be at least 8 characters</div>
+              </div>
+              <div *ngIf="!passwordMatch" style="font-size: x-small;color: red;">
+                Password does not match. Please check and try again...
+              </div>
+            </div>
+
+            <div *ngIf="isLogin; then loginForm else signupForm"></div>
+            <ng-template #loginForm>
+              <div class="text-center">
+                <input type="submit" class="btn btn-color" value="Login">
+              </div>
+            </ng-template>
+            <ng-template #signupForm>
+              <div class="text-center">
+                <input type="submit" class="btn btn-color" value="SignUp">
+              </div>
+            </ng-template>
+
+            <!-- <div class="text-center">
+              <input type="submit" class="btn btn-color" value="Login">
+            </div> -->
+          </form>
+          <div class="text-center sign-up-text">
+            Don`t have an account ? <a (click)="isLogin=!isLogin">{{isLogin?'Sign Up':'Login'}}</a> here.
+          </div>
+        </div>
+      </div>
+<!-- </div> -->

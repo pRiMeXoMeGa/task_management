@@ -1,0 +1,177 @@
+<div class="card mt-5 mx-auto w-75">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+    <div class="card-body">
+        <div class="row mb-3 mx-auto">
+            <div class="col-md-2">
+                Search:
+            </div>
+            <div class="col-md-4">
+                <input type="text"
+                    [(ngModel)] = 'listFilter'
+                    />
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table " *ngIf = "categoryList?.categories">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Category</th>
+                        <th>Shared With</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of filteredCategory; index as i">
+                        <td>{{i+1}}</td>
+
+                        <div *ngIf="toggleModel!=category.id; then unedit else edit"></div>
+                        <ng-template #unedit>
+                            <td>
+                                <a [routerLink]="['./', category.id]"
+                                    id="category_{{category.category}}">
+                                    {{category.category | uppercase}}
+                                </a>
+                            </td>
+                        </ng-template>
+                        <ng-template #edit>
+                            <td>
+                                <input  type="text" 
+                                        placeholder="{{category.category}}"
+                                        [(ngModel)] = 'editedCategory' 
+                                />
+                            </td>
+                        </ng-template>
+
+                        <td>
+                            <span *ngFor="let share of category.sharedWith">
+                                <!-- <span *ngIf="share.id!=category.user_id"> -->
+                                <span>
+                                    {{share.email}} 
+                                    <a class="btn" 
+                                    (click)="deleteUserFromCategory(share.email, category.id)">
+                                        <mat-icon>delete</mat-icon>
+                                    </a>
+                                    <br />
+                                </span>
+                            </span>
+                            <div *ngIf="addUserToCate && toggleAddUser==category.id ; then showAddUserField else hideAddUserField"></div>
+                            <ng-template #showAddUserField>
+                                <span>
+                                    <input type="text" 
+                                        placeholder="add user email"
+                                        [(ngModel)] = 'addUserEmail'
+                                    />
+                                    <button class="btn" 
+                                    (click)="addUserToCategory(category.id,category.category)">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                    <a class="mx-2 btn"
+                                    (click)="toggleAddUserDisable()">
+                                    <mat-icon>cancel</mat-icon>
+                                </a>
+                                </span>
+                            </ng-template>
+                            <ng-template #hideAddUserField> 
+                                <a class="btn" 
+                                    (click)="toggleAddUserToCate(category.id)">
+                                    <mat-icon>add</mat-icon>
+                                </a>
+                            </ng-template>
+                            
+                        </td>
+                        
+                        <div *ngIf="toggleModel!=category.id; then updateBtn else editBtn"></div>
+                        <ng-template #updateBtn>
+                            <td>
+                                <a class="btn" 
+                                    (click)="toggleEdit(category.id)">
+                                    <mat-icon>update</mat-icon>
+                                </a>
+                            </td>
+                        </ng-template>
+                        <ng-template #editBtn>
+                            <td>
+                                <button class=" btn btn-primary" 
+                                        (click)="onUpdate(category.id)">
+                                        Update
+                                </button>
+                                <a class="mx-2 btn"
+                                    (click)="toggleEditDisable()">
+                                    <mat-icon>cancel</mat-icon>
+                                </a>
+                            </td>
+                        </ng-template>
+                        <td>
+                            <a class="btn"
+                                (click)="onDelete(category.id)"
+                                id="categoryID_{{category.id}}">
+                                <mat-icon>delete</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr class="text-center">
+                        <div *ngIf="addCategoryClicked ; then showAddField else hideAddField"></div>
+                        <ng-template #showAddField>
+                            <td colspan="2">
+                                <label> Category :</label>
+                                <input  type="text" 
+                                        placeholder="Add Category"
+                                        [(ngModel)] = 'addCategory' 
+                                />
+                                
+                            </td>
+                            <td colspan="1">
+                                <input type="checkbox" 
+                                       value="true"
+                                       [(ngModel)] = 'isShared'
+                                />
+                                {{isShared}}
+                            </td>
+
+                            <div *ngIf="isShared; then userFieldAdd else userFieldRemove"></div>
+                            <ng-template #userFieldAdd>
+                                <td colspan="2">
+                                    <label> User Email :</label>
+                                    <input type="text" 
+                                        placeholder="add user email"
+                                        [(ngModel)] = 'addUserEmail'
+                                    />
+                                </td>
+                            </ng-template>
+                            <ng-template #userFieldRemove>
+                                <td colspan="2"></td>
+                            </ng-template>
+                        </ng-template>
+                        <ng-template #hideAddField> </ng-template>
+                    </tr>
+                    
+                    <tr class="text-center">
+                        <div *ngIf="addCategoryClicked; then showAddBtn else showSubmitBtn"></div>
+                        <ng-template #showAddBtn>
+                            <td colspan="5">
+                                <button class="mx-2 btn btn-success" (click)="onSubmitCategory()"> Submit </button>
+                                <a class="mx-2 btn"
+                                (click)="onAddCategoryBtn()">
+                                    <mat-icon>cancel</mat-icon>
+                                </a>
+                            </td>
+                        </ng-template>
+                        
+                        <ng-template #showSubmitBtn>
+                            <td colspan="5">
+                                <button class="btn btn-primary" (click)="onAddCategoryBtn()"> Add Category </button>
+                            </td>
+                        </ng-template>
+                    </tr>
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
