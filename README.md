@@ -39,13 +39,20 @@ With User friendly interface and interactive design, this frontend serves as the
 
 -   Step 1: Create .env file and paste below values
 	>DATABASE_HOSTNAME=localhost 
-	DATABASE_PORT=5432 
-	DATABASE_PASSWORD=password123 
-	DATABASE_NAME=taskDB
-	DATABASE_USERNAME=postgres
-	SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7 
-	ALGORITHM=HS256 
-	ACCESS_TOKEN_EXPIRE_MINUTES=30
+	
+ 	>DATABASE_PORT=5432 
+
+	>DATABASE_PASSWORD=password123 
+	
+ 	>DATABASE_NAME=taskDB
+
+	>DATABASE_USERNAME=postgres
+	
+ 	>SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7 
+
+	>ALGORITHM=HS256 
+	
+ 	>ACCESS_TOKEN_EXPIRE_MINUTES=30
     
 -   Step 2: Put .env file outside app folder
 -   Step 3: Create Virtual Environment --
